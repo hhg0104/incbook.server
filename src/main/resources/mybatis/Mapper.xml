@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="BookManagement">
+
+	<resultMap id="bookInfo" type="com.formalworks.library.model.BookInfo">
+		<id property="bookID" column="book_id" />
+		<result property="bookTitle" column="book_title" />
+		<result property="publisher" column="publisher" />
+		<result property="description" column="description" />
+		<result property="imagePath" column="image_path" />
+		<result property="location" column="location" />
+		<result property="isbn" column="isbn" />
+	</resultMap>
+
+	<!-- 책 정보를 모두 가져온다. -->
+
+	<select id="selectBooks" resultMap="bookInfo">
+		select * from book_info;
+	</select>
+
+
+	<!-- DB에서 특정 책을 제거한다. -->
+
+	<delete id="deleteBook" parameterType="string">
+		delete
+		from
+		book_info
+		where
+		book_id = #{bookID};
+	</delete>
+
+	<!-- 책을 등록한다. -->
+
+	<insert id="insertBook" parameterType="map">
+		insert
+		into
+		book_info
+		(book_title,
+		author,
+		publisher,
+		description,
+		image_path,
+		location,
+		isbn
+		)
+		values
+		(#{bookTitle},
+		#{author},
+		#{publisher},
+		#{description},
+		#{imagePath},
+		#{location},
+		#{isbn}
+		);
+	</insert>
+
+	<update id="updateBook" parameterType="map">
+		update
+		book_info
+		SET
+		book_title=#{bookTitle},
+		author=#{author},
+		publisher=#{publisher},
+		description=#{description},
+		image_path=#{imagePath},
+		location=#{location},
+		isbn=#{isbn}
+		where
+		book_id=#{bookID};
+
+	</update>
+
+</mapper>
