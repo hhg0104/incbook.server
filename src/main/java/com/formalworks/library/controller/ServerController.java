@@ -1,6 +1,5 @@
 package com.formalworks.library.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.formalworks.library.exception.ServerQueryException;
-import com.formalworks.library.model.BookInfo;
 import com.formalworks.library.model.BookDAO;
+import com.formalworks.library.model.BookInfo;
 import com.google.gson.Gson;
 
 /**
@@ -25,25 +24,9 @@ import com.google.gson.Gson;
 @Controller
 public class ServerController extends ServicesController {
 
+	private static final Logger LOGGER = Logger.getLogger(ServerController.class);
 	@Autowired
 	public BookDAO bookDao;
-	private static final Logger LOGGER = Logger.getLogger(ServerController.class);
-
-	/**
-	 * Formalworks_Library의 책의 목록 및 정보를 반환한다.
-	 * 
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(value = "/books", method = RequestMethod.GET)
-	public void getBookList(HttpServletRequest request, HttpServletResponse response) {
-
-		// 포멀웍스가 보유한 책의 목록 및 정보를 반환한다.
-		List<HashMap<String, String>> result = bookDao.getBookList();
-		LOGGER.info("Formalworks 도서 목록을 가져왔습니다."); //$NON-NLS-1$
-
-		sendResponse(response, HttpServletResponse.SC_OK, new Gson().toJson(result));
-	}
 
 	/**
 	 * Formalworks_Library에 등록되어 있는 책을 제거한다.
@@ -107,5 +90,21 @@ public class ServerController extends ServicesController {
 		LOGGER.info(String.format("formalworks_library  테이블에서 %s의 위치 및 대여 정보를 수정하였습니다.", id)); //$NON-NLS-1$
 
 		sendResponse(response, HttpServletResponse.SC_OK);
+	}
+
+	/**
+	 * Formalworks_Library의 책의 목록 및 정보를 반환한다.
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
+	public void getBookList(HttpServletRequest request, HttpServletResponse response) {
+
+		// 포멀웍스가 보유한 책의 목록 및 정보를 반환한다.
+		 List<BookInfo> result = bookDao.getBookList();
+		LOGGER.info("Formalworks 도서 목록을 가져왔습니다."); //$NON-NLS-1$
+
+		sendResponse(response, HttpServletResponse.SC_OK, new Gson().toJson(result));
 	}
 }

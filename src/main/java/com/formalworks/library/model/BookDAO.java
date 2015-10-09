@@ -35,27 +35,19 @@ public class BookDAO {
 
 	private static final String TEXT_BOOK_TITLE_NOT_EXIST = "도서 제목이 입력되지 않았습니다.";
 
-	private SqlSession sqlSession;
-
 	private static final Logger LOGGER = Logger
 			.getLogger(ServerController.class);
 
-	/**
-	 * @param sqlSession
-	 *            the sqlSession to set
-	 */
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-
-	public List<HashMap<String, String>> getBookList() {
-
-		return sqlSession.selectList("BookManagement.selectBooks"); //$NON-NLS-1$
-	}
+	private SqlSession sqlSession;
 
 	public int deleteBook(@Param("bookID") String bookID) {
 
 		return sqlSession.delete("BookManagement.deleteBook", bookID); //$NON-NLS-1$
+	}
+
+	public List<BookInfo> getBookList() {
+
+		return sqlSession.selectList("BookManagement.selectBooks"); //$NON-NLS-1$
 	}
 
 	/**
@@ -96,6 +88,14 @@ public class BookDAO {
 		map.put("isbn", isbn); //$NON-NLS-1$
 
 		return sqlSession.insert("BookManagement.insertBook", map); //$NON-NLS-1$
+	}
+
+	/**
+	 * @param sqlSession
+	 *            the sqlSession to set
+	 */
+	public void setSqlSession(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
 	}
 
 	public int updateBook(String id, BookInfo bookInfo)
