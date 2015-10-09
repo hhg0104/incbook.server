@@ -7,11 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap id="bookInfo" type="com.formalworks.library.model.BookInfo">
 		<id property="bookID" column="book_id" />
+		<result property="callNo" column="call_no"/>
+		<result property="regNo" column="reg_no"/>
 		<result property="bookTitle" column="book_title" />
 		<result property="publisher" column="publisher" />
 		<result property="description" column="description" />
 		<result property="imagePath" column="image_path" />
-		<result property="location" column="location" />
+		<result property="originLocation" column="origin_location" />
+		<result property="currentLocation" column="current_location" />
 		<result property="isbn" column="isbn" />
 	</resultMap>
 
@@ -38,21 +41,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert
 		into
 		book_info
-		(book_title,
+		(
+		call_no,
+		reg_no,
+		book_title,
 		author,
 		publisher,
 		description,
 		image_path,
-		location,
+		origin_location,
+		current_location,
 		isbn
 		)
 		values
-		(#{bookTitle},
+		(
+		#{callNo},
+		#{regNo},
+		#{bookTitle},
 		#{author},
 		#{publisher},
 		#{description},
 		#{imagePath},
-		#{location},
+		#{originLocation},
+		#{currentLocation},
 		#{isbn}
 		);
 	</insert>
@@ -61,12 +72,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update
 		book_info
 		SET
+		call_no=#{callNo},
+		reg_no=#{regNo},
 		book_title=#{bookTitle},
 		author=#{author},
 		publisher=#{publisher},
 		description=#{description},
 		image_path=#{imagePath},
-		location=#{location},
+		origin_location=#{originLocation},
+		current_location=#{currentLocation},
 		isbn=#{isbn}
 		where
 		book_id=#{bookID};

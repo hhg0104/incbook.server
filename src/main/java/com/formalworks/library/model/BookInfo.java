@@ -5,8 +5,8 @@
  * Summary  :
  * Copyright (C) 2015 Formal Works Inc. All rights reserved.
  *
- * 이 문서의 모든 저작권 및 지적 재산권은 (주)포멀웍스에게 있습니다.
- * 이 문서의 어떠한 부분도 허가 없이 복제 또는 수정 하거나, 전송할 수 없습니다.
+ * ��臾몄꽌��紐⑤뱺 ��옉沅�諛�吏�쟻 �ъ궛沅뚯� (二��щ��띿뒪�먭쾶 �덉뒿�덈떎.
+ * ��臾몄꽌���대뼚��遺�텇���덇� �놁씠 蹂듭젣 �먮뒗 �섏젙 �섍굅�� �꾩넚�����놁뒿�덈떎.
  */
 package com.formalworks.library.model;
 
@@ -14,25 +14,52 @@ import com.google.gson.Gson;
 
 /**
  * @author JUNG UK LEE
- *
+ * 
  */
 public class BookInfo {
 
+	private String callNo;
+	private String regNo;
 	private String bookID;
 	private String bookTitle;
 	private String author;
 	private String publisher;
 	private String description;
 	private String imagePath;
-	private String location;
+	private String originLocation;
+	private String currentLocation;
 	private String isbn;
 
-	public String getLocation() {
-		return location;
+	public String getCallNo() {
+		return callNo;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setCallNo(String callNo) {
+		this.callNo = callNo;
+	}
+
+	public String getRegNo() {
+		return regNo;
+	}
+
+	public void setReqNo(String regNo) {
+		this.regNo = regNo;
+	}
+
+	public String getOriginLocation() {
+		return originLocation;
+	}
+
+	public void setOriginLocation(String originLocation) {
+		this.originLocation = originLocation;
+	}
+
+	public String getCurrentLocation() {
+		return currentLocation;
+	}
+
+	public void setCurrentLocation(String currentLocation) {
+		this.currentLocation = currentLocation;
 	}
 
 	public void setIsbn(String isbn) {
