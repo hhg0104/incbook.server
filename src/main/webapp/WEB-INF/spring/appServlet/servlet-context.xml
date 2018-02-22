@@ -9,7 +9,7 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
-	<context:component-scan base-package="com.formalworks.library.controller" />
+	<context:component-scan base-package="incbook.controller" />
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />

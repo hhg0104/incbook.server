@@ -1,4 +1,4 @@
-package com.formalworks.library.controller;
+package incbook.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -14,14 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.formalworks.library.exception.ServerQueryException;
-import com.formalworks.library.model.BookDAO;
-import com.formalworks.library.model.BookInfo;
 import com.google.gson.Gson;
 
-/**
- * Handles requests for the application home page.
- */
+import incbook.exception.ServerQueryException;
+import incbook.model.BookDAO;
+import incbook.model.BookInfo;
+
 @Controller
 public class ServerController extends ServicesController {
 
@@ -57,7 +55,7 @@ public class ServerController extends ServicesController {
 	 *            삭제할 책 ID
 	 */
 	@RequestMapping(value = "/books/{book_id}", method = RequestMethod.DELETE, produces = Produces.APPLICATION_JSON)
-	public void deleteBookInfo(HttpServletResponse response, @PathVariable(BOOK_ID) int id) {
+	public void deleteBookInfo(HttpServletResponse response, @PathVariable("id") int id) {
 
 		bookDao.deleteBook(id);
 		LOGGER.info(String.format("책 정보(ID: %d)를 제거하였습니다.", id)); //$NON-NLS-1$

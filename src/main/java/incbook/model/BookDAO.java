@@ -1,14 +1,4 @@
-/**
- * FileName : ProjectGroupDAO.java
- * Created  : 2015. 9. 15.
- * Author   : JUNG UK LEE
- * Summary  :
- * Copyright (C) 2015 Formal Works Inc. All rights reserved.
- *
- * 이 문서의 모든 저작권 및 지적 재산권은 (주)포멀웍스에게 있습니다.
- * 이 문서의 어떠한 부분도 허가 없이 복제 또는 수정 하거나, 전송할 수 없습니다.
- */
-package com.formalworks.library.model;
+package incbook.model;
 
 import java.util.List;
 import java.util.Map;
@@ -20,13 +10,10 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.formalworks.library.exception.ServerQueryException;
 import com.mysql.jdbc.util.ServerController;
 
-/**
- * 
- * @author JUNG UK LEE
- */
+import incbook.exception.ServerQueryException;
+
 @Repository
 @Component
 public class BookDAO {

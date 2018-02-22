@@ -1,14 +1,4 @@
-/**
- * FileName : BookInfo.java
- * Created  : 2015. 9. 21.
- * Author   : JUNG UK LEE
- * Summary  :
- * Copyright (C) 2015 Formal Works Inc. All rights reserved.
- *
- * 이 문서의 모든 저작권 및 지적 재산권은 (주)포멀웍스에게 있습니다.
- * 이 문서의 어떠한 부분도 허가 없이 복제 또는 수정 하거나, 전송할 수 없습니다.
- */
-package com.formalworks.library.model;
+package incbook.model;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -16,10 +6,6 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-/**
- * @author JUNG UK LEE
- *
- */
 public class BookInfo {
 
 	private int id;
@@ -38,7 +24,7 @@ public class BookInfo {
 
 	private String isbn;
 
-	private Date createDate;
+	private Date createdDate;
 
 	private Date modifiedDate;
 
@@ -106,12 +92,12 @@ public class BookInfo {
 		this.isbn = isbn;
 	}
 
-	public Date getCreateDate() {
-		return createDate;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public Date getModifiedDate() {
