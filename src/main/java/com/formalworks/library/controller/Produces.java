@@ -11,13 +11,8 @@
 
 package com.formalworks.library.controller;
 
-
 public interface Produces {
 
 	public static final String APPLICATION_JSON = "application/json"; //$NON-NLS-1$
-
-	public static final String TEXT_HTML = "text/html"; //$NON-NLS-1$
-
-	public static final String MULTIPART_FORM = "multipart/form-data"; //$NON-NLS-1$
 
 }

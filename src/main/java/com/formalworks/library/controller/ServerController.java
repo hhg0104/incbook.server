@@ -1,7 +1,7 @@
 package com.formalworks.library.controller;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.formalworks.library.exception.ServerQueryException;
-import com.formalworks.library.model.BookInfo;
 import com.formalworks.library.model.BookDAO;
+import com.formalworks.library.model.BookInfo;
 import com.google.gson.Gson;
 
 /**
@@ -30,81 +30,87 @@ public class ServerController extends ServicesController {
 	private static final Logger LOGGER = Logger.getLogger(ServerController.class);
 
 	/**
-	 * Formalworks_Library의 책의 목록 및 정보를 반환한다.
+	 * 모든 책 정보 목록을 반환한다.
 	 * 
 	 * @param request
+	 *            HttpServletRequest 객체
 	 * @param response
+	 *            HttpServletResponse 객체
+	 * @return 모든 책 정보 목록
 	 */
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public void getBookList(HttpServletRequest request, HttpServletResponse response) {
 
-		// 포멀웍스가 보유한 책의 목록 및 정보를 반환한다.
-		List<HashMap<String, String>> result = bookDao.getBookList();
-		LOGGER.info("Formalworks 도서 목록을 가져왔습니다."); //$NON-NLS-1$
+		List<Map<String, String>> result = bookDao.getBookList();
+		LOGGER.info("책 정보 목록을 가져왔습니다."); //$NON-NLS-1$
 
-		sendResponse(response, HttpServletResponse.SC_OK, new Gson().toJson(result));
+		String bookInfoList = new Gson().toJson(result);
+		sendResponse(response, HttpServletResponse.SC_OK, bookInfoList);
 	}
 
 	/**
-	 * Formalworks_Library에 등록되어 있는 책을 제거한다.
+	 * 특정 책 정보를 삭제한다.
 	 * 
 	 * @param response
+	 *            HttpServletResponse 객체
+	 * @param id
+	 *            삭제할 책 ID
 	 */
 	@RequestMapping(value = "/books/{book_id}", method = RequestMethod.DELETE, produces = Produces.APPLICATION_JSON)
-	public void deleteFormalworksBook(HttpServletResponse response,
-			@PathVariable(BOOK_ID) String id) {
+	public void deleteBookInfo(HttpServletResponse response, @PathVariable(BOOK_ID) int id) {
 
-		// 특정 프로젝트 그룹을 삭제
-		int deleteRows = bookDao.deleteBook(id);
-		LOGGER.info(String.format("포멀웍스에서 책 %s개를 제거하였습니다.", deleteRows)); //$NON-NLS-1$
+		bookDao.deleteBook(id);
+		LOGGER.info(String.format("책 정보(ID: %d)를 제거하였습니다.", id)); //$NON-NLS-1$
 
 		sendResponse(response, HttpServletResponse.SC_OK);
 	}
 
 	/**
-	 * Formalworks_Library에 책을 등록한다.
+	 * 새로운 책 정보를 등록한다.
 	 * 
 	 * @param response
-	 * @param requestJson
+	 *            HttpServletResponse 객체
+	 * @param bookInfo
+	 *            등록할 책 정보
 	 */
 	@RequestMapping(value = "/book", method = RequestMethod.POST, produces = Produces.APPLICATION_JSON)
-	public void enrollBookInfo(HttpServletResponse response, @RequestBody String requestJson) {
+	public void addBookInfo(HttpServletResponse response, @RequestBody BookInfo bookInfo) {
 
-		BookInfo bookInfo = BookInfo.fromJson(requestJson);
-
-		// 책을 등록한다.
-		int insertRows = 0;
 		try {
-			insertRows = bookDao.insertBook(bookInfo);
+			bookDao.insertBook(bookInfo);
+
 		} catch (ServerQueryException e) {
 			e.printStackTrace();
 			sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
 		}
-		LOGGER.info(String.format("Book_info 테이블에 책을 %s개 등록하였습니다.", insertRows)); //$NON-NLS-1$
+
+		LOGGER.info(String.format("\"%s\" 책 정보를 등록하였습니다.", bookInfo.getTitle())); //$NON-NLS-1$
 
 		sendResponse(response, HttpServletResponse.SC_OK);
 	}
 
 	/**
-	 * Formalworks_Library에 책을 등록한다.
+	 * 특정 책 정보를 수정한다.
 	 * 
 	 * @param response
-	 * @param bookID
+	 *            HttpServletResponse 객체
+	 * @param bookInfo
+	 *            수정할 책 정보
+	 * @param id
+	 *            수정할 책 ID
 	 */
 	@RequestMapping(value = "/books/{book_id}", method = RequestMethod.PUT, produces = Produces.APPLICATION_JSON)
-	public void enrollFormalworksBook(HttpServletResponse response, @RequestBody String requestJson,
-			@PathVariable(BOOK_ID) String id) {
+	public void editBookInfo(HttpServletResponse response, @RequestBody BookInfo bookInfo) {
 
-		BookInfo bookInfo = BookInfo.fromJson(requestJson);
-		
-		// 책의 위치 정보를 수정한다.
 		try {
-			bookDao.updateBook(id, bookInfo);
+			bookDao.updateBook(bookInfo);
+
 		} catch (ServerQueryException e) {
 			e.printStackTrace();
 			sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
 		}
-		LOGGER.info(String.format("formalworks_library  테이블에서 %s의 위치 및 대여 정보를 수정하였습니다.", id)); //$NON-NLS-1$
+
+		LOGGER.info(String.format("\"%s\" 책 정보를 등록하였습니다.", bookInfo.getTitle())); //$NON-NLS-1$
 
 		sendResponse(response, HttpServletResponse.SC_OK);
 	}

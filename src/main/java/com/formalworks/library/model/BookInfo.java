@@ -10,6 +10,10 @@
  */
 package com.formalworks.library.model;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.gson.Gson;
 
 /**
@@ -18,14 +22,73 @@ import com.google.gson.Gson;
  */
 public class BookInfo {
 
-	private String bookID;
-	private String bookTitle;
+	private int id;
+
+	private String title;
+
 	private String author;
+
 	private String publisher;
+
 	private String description;
-	private String imagePath;
+
+	private String imageUrl;
+
 	private String location;
+
 	private String isbn;
+
+	private Date createDate;
+
+	private Date modifiedDate;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
 	public String getLocation() {
 		return location;
@@ -35,105 +98,28 @@ public class BookInfo {
 		this.location = location;
 	}
 
+	public String getIsbn() {
+		return isbn;
+	}
+
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 
-	/**
-	 * @return the bookID
-	 */
-	public String getBookID() {
-		return bookID;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	/**
-	 * @param bookID
-	 *            the bookID to set
-	 */
-	public void setBookID(String bookID) {
-		this.bookID = bookID;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
-	/**
-	 * @return the bookTitle
-	 */
-	public String getBookTitle() {
-		return bookTitle;
+	public Date getModifiedDate() {
+		return modifiedDate;
 	}
 
-	/**
-	 * @param bookTitle
-	 *            the bookTitle to set
-	 */
-	public void setBookTitle(String bookTitle) {
-		this.bookTitle = bookTitle;
-	}
-
-	/**
-	 * @return the author
-	 */
-	public String getAuthor() {
-		return author;
-	}
-
-	/**
-	 * @param author
-	 *            the author to set
-	 */
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	/**
-	 * @return the publisher
-	 */
-	public String getPublisher() {
-		return publisher;
-	}
-
-	/**
-	 * @param publisher
-	 *            the publisher to set
-	 */
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
-	 * @return the imagePath
-	 */
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	/**
-	 * @param imagePath
-	 *            the imagePath to set
-	 */
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	/**
-	 * @return the ispn
-	 */
-	public String getIsbn() {
-		return isbn;
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 
 	/**
@@ -148,6 +134,21 @@ public class BookInfo {
 		Gson gson = new Gson();
 
 		return gson.fromJson(context, BookInfo.class);
+	}
+
+	public Map<String, Object> toMap() {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", this.id); //$NON-NLS-1$
+		map.put("title", this.title); //$NON-NLS-1$
+		map.put("author", this.author); //$NON-NLS-1$
+		map.put("publisher", this.publisher); //$NON-NLS-1$
+		map.put("description", this.description); //$NON-NLS-1$
+		map.put("imageUrl", this.imageUrl); //$NON-NLS-1$
+		map.put("location", this.location); //$NON-NLS-1$
+		map.put("isbn", this.isbn); //$NON-NLS-1$
+
+		return map;
 	}
 
 	public String toJson() {
