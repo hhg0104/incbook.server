@@ -22,7 +22,7 @@ public class ServicesController {
 	protected Properties userInfo = new Properties();
 
 	/**
-	 * AuthorizedToken?„ ?ƒ?„±?•œ?‹¤.
+	 * AuthorizedTokenì„ ìƒì„±í•œë‹¤.
 	 * 
 	 * @return
 	 */
@@ -31,7 +31,7 @@ public class ServicesController {
 	}
 
 	/**
-	 * Responseë¥? ? „?†¡?•œ?‹¤.
+	 * Responseë¥¼ ì „ì†¡í•œë‹¤.
 	 * 
 	 * @param response
 	 * @param errorCode
@@ -41,7 +41,7 @@ public class ServicesController {
 	}
 
 	/**
-	 * Responseë¥? ? „?†¡?•œ?‹¤.
+	 * Responseë¥¼ ì „ì†¡í•œë‹¤.
 	 * 
 	 * @param response
 	 * @param errorCode

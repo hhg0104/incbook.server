@@ -31,9 +31,9 @@ public class BookDAO {
 	}
 
 	/**
-	 * DB?—?„œ ì±? ? •ë³? ëª©ë¡?„ ? „ë¶? ê°?? ¸?˜¨?‹¤.
+	 * DBì—ì„œ ì±… ì •ë³´ ëª©ë¡ì„ ì „ë¶€ ê°€ì ¸ì˜¨ë‹¤.
 	 * 
-	 * @return ì±? ? •ë³? ëª©ë¡
+	 * @return ì±… ì •ë³´ ëª©ë¡
 	 */
 	public List<Map<String, String>> getBookList() {
 
@@ -41,10 +41,10 @@ public class BookDAO {
 	}
 
 	/**
-	 * DB?—?„œ ?Š¹? • ì±…ì„ ? œê±°í•œ?‹¤.
+	 * DBì—ì„œ íŠ¹ì • ì±…ì„ ì œê±°í•œë‹¤.
 	 * 
 	 * @param id
-	 *            ì±? ID
+	 *            ì±… ID
 	 * @return ê²°ê³¼ Int
 	 */
 	public int deleteBook(int id) {
@@ -53,18 +53,18 @@ public class BookDAO {
 	}
 
 	/**
-	 * DB?— ì±…ì„ ?“±ë¡í•œ?‹¤.
+	 * DBì— ì±…ì„ ë“±ë¡í•œë‹¤.
 	 * 
 	 * @param bookInfo
-	 *            ?“±ë¡? ? •ë³?
+	 *            ë“±ë¡ ì •ë³´
 	 * @return ê²°ê³¼ Int
 	 * @throws ServerQueryException
-	 *             ?„œë²? ì¿¼ë¦¬ ê´?? ¨ ?˜ˆ?™¸?‚¬?•­
+	 *             ì„œë²„ ì¿¼ë¦¬ ê´€ë ¨ ì˜ˆì™¸ì‚¬í•­
 	 */
 	public int insertBook(BookInfo bookInfo) throws ServerQueryException {
 
 		if (bookInfo == null || bookInfo.getTitle() == null) {
-			String errMsg = "ì±? ?“±ë¡ì— ?•„?š”?•œ ?•„?ˆ˜ ? •ë³´ê? ?…? ¥?˜ì§? ?•Š?•˜?Šµ?‹ˆ?‹¤."; //$NON-NLS-1$
+			String errMsg = "ì±… ë“±ë¡ì— í•„ìš”í•œ í•„ìˆ˜ ì •ë³´ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."; //$NON-NLS-1$
 			LOGGER.error(errMsg);
 			throw new ServerQueryException(errMsg, HttpServletResponse.SC_BAD_REQUEST);
 		}
@@ -75,18 +75,18 @@ public class BookDAO {
 	}
 
 	/**
-	 * ì±? ? •ë³´ë?? ?ˆ˜? •?•œ?‹¤.
+	 * ì±… ì •ë³´ë¥¼ ìˆ˜ì •í•œë‹¤.
 	 * 
 	 * @param bookInfo
-	 *            ?ˆ˜? • ? •ë³?
+	 *            ìˆ˜ì • ì •ë³´
 	 * @return ê²°ê³¼ Int
 	 * @throws ServerQueryException
-	 *             ?„œë²? ì¿¼ë¦¬ ê´?? ¨ ?˜ˆ?™¸?‚¬?•­
+	 *             ì„œë²„ ì¿¼ë¦¬ ê´€ë ¨ ì˜ˆì™¸ì‚¬í•­
 	 */
 	public int updateBook(BookInfo bookInfo) throws ServerQueryException {
 
 		if (bookInfo == null || bookInfo.getTitle() == null) {
-			String errMsg = "ì±? ?“±ë¡ì— ?•„?š”?•œ ?•„?ˆ˜ ? •ë³´ê? ?…? ¥?˜ì§? ?•Š?•˜?Šµ?‹ˆ?‹¤."; //$NON-NLS-1$
+			String errMsg = "ì±… ë“±ë¡ì— í•„ìš”í•œ í•„ìˆ˜ ì •ë³´ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."; //$NON-NLS-1$
 			LOGGER.error(errMsg);
 			throw new ServerQueryException(errMsg, HttpServletResponse.SC_BAD_REQUEST);
 		}
