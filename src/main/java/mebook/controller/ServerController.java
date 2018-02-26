@@ -1,4 +1,4 @@
-package incbook.controller;
+package mebook.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 
-import incbook.exception.ServerQueryException;
-import incbook.model.BookDAO;
-import incbook.model.BookInfo;
+import mebook.exception.ServerQueryException;
+import mebook.model.BookDAO;
+import mebook.model.BookInfo;
 
 @Controller
 public class ServerController extends ServicesController {
@@ -28,48 +28,48 @@ public class ServerController extends ServicesController {
 	private static final Logger LOGGER = Logger.getLogger(ServerController.class);
 
 	/**
-	 * 모든 책 정보 목록을 반환한다.
+	 * 모든 �? ?���? 목록?�� 반환?��?��.
 	 * 
 	 * @param request
 	 *            HttpServletRequest 객체
 	 * @param response
 	 *            HttpServletResponse 객체
-	 * @return 모든 책 정보 목록
+	 * @return 모든 �? ?���? 목록
 	 */
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
 	public void getBookList(HttpServletRequest request, HttpServletResponse response) {
 
 		List<Map<String, String>> result = bookDao.getBookList();
-		LOGGER.info("책 정보 목록을 가져왔습니다."); //$NON-NLS-1$
+		LOGGER.info("�? ?���? 목록?�� �??��?��?��?��?��."); //$NON-NLS-1$
 
 		String bookInfoList = new Gson().toJson(result);
 		sendResponse(response, HttpServletResponse.SC_OK, bookInfoList);
 	}
 
 	/**
-	 * 특정 책 정보를 삭제한다.
+	 * ?��?�� �? ?��보�?? ?��?��?��?��.
 	 * 
 	 * @param response
 	 *            HttpServletResponse 객체
 	 * @param id
-	 *            삭제할 책 ID
+	 *            ?��?��?�� �? ID
 	 */
-	@RequestMapping(value = "/books/{book_id}", method = RequestMethod.DELETE, produces = Produces.APPLICATION_JSON)
-	public void deleteBookInfo(HttpServletResponse response, @PathVariable("id") int id) {
+	@RequestMapping(value = "/books/{id}", method = RequestMethod.DELETE, produces = Produces.APPLICATION_JSON)
+	public void deleteBookInfo(HttpServletResponse response, @PathVariable int id) {
 
 		bookDao.deleteBook(id);
-		LOGGER.info(String.format("책 정보(ID: %d)를 제거하였습니다.", id)); //$NON-NLS-1$
+		LOGGER.info(String.format("�? ?���?(ID: %d)�? ?��거하???��?��?��.", id)); //$NON-NLS-1$
 
 		sendResponse(response, HttpServletResponse.SC_OK);
 	}
 
 	/**
-	 * 새로운 책 정보를 등록한다.
+	 * ?��로운 �? ?��보�?? ?��록한?��.
 	 * 
 	 * @param response
 	 *            HttpServletResponse 객체
 	 * @param bookInfo
-	 *            등록할 책 정보
+	 *            ?��록할 �? ?���?
 	 */
 	@RequestMapping(value = "/book", method = RequestMethod.POST, produces = Produces.APPLICATION_JSON)
 	public void addBookInfo(HttpServletResponse response, @RequestBody BookInfo bookInfo) {
@@ -82,24 +82,26 @@ public class ServerController extends ServicesController {
 			sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
 		}
 
-		LOGGER.info(String.format("\"%s\" 책 정보를 등록하였습니다.", bookInfo.getTitle())); //$NON-NLS-1$
+		LOGGER.info(String.format("\"%s\" �? ?��보�?? ?��록하???��?��?��.", bookInfo.getTitle())); //$NON-NLS-1$
 
 		sendResponse(response, HttpServletResponse.SC_OK);
 	}
 
 	/**
-	 * 특정 책 정보를 수정한다.
+	 * ?��?�� �? ?��보�?? ?��?��?��?��.
 	 * 
 	 * @param response
 	 *            HttpServletResponse 객체
 	 * @param bookInfo
-	 *            수정할 책 정보
+	 *            ?��?��?�� �? ?���?
 	 * @param id
-	 *            수정할 책 ID
+	 *            ?��?��?�� �? ID
 	 */
-	@RequestMapping(value = "/books/{book_id}", method = RequestMethod.PUT, produces = Produces.APPLICATION_JSON)
-	public void editBookInfo(HttpServletResponse response, @RequestBody BookInfo bookInfo) {
-
+	@RequestMapping(value = "/books/{id}", method = RequestMethod.PUT, produces = Produces.APPLICATION_JSON)
+	public void editBookInfo(HttpServletResponse response, @PathVariable int id, @RequestBody BookInfo bookInfo) {
+		
+		bookInfo.setId(id);
+		
 		try {
 			bookDao.updateBook(bookInfo);
 
@@ -108,7 +110,7 @@ public class ServerController extends ServicesController {
 			sendResponse(response, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
 		}
 
-		LOGGER.info(String.format("\"%s\" 책 정보를 등록하였습니다.", bookInfo.getTitle())); //$NON-NLS-1$
+		LOGGER.info(String.format("\"%s\" �? ?��보�?? ?��록하???��?��?��.", bookInfo.getTitle())); //$NON-NLS-1$
 
 		sendResponse(response, HttpServletResponse.SC_OK);
 	}

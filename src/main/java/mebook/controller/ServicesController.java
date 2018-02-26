@@ -1,5 +1,5 @@
 
-package incbook.controller;
+package mebook.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +22,7 @@ public class ServicesController {
 	protected Properties userInfo = new Properties();
 
 	/**
-	 * AuthorizedTokenì„ ìƒì„±í•œë‹¤.
+	 * AuthorizedToken?„ ?ƒ?„±?•œ?‹¤.
 	 * 
 	 * @return
 	 */
@@ -31,7 +31,7 @@ public class ServicesController {
 	}
 
 	/**
-	 * Responseë¥¼ ì „ì†¡í•œë‹¤.
+	 * Responseë¥? ? „?†¡?•œ?‹¤.
 	 * 
 	 * @param response
 	 * @param errorCode
@@ -41,7 +41,7 @@ public class ServicesController {
 	}
 
 	/**
-	 * Responseë¥¼ ì „ì†¡í•œë‹¤.
+	 * Responseë¥? ? „?†¡?•œ?‹¤.
 	 * 
 	 * @param response
 	 * @param errorCode

@@ -1,4 +1,4 @@
-package incbook.model;
+package mebook.model;
 
 import java.util.Date;
 import java.util.HashMap;

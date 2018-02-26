@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="BookManagement">
 
-	<resultMap id="bookInfo" type="com.formalworks.library.model.BookInfo">
+	<resultMap id="bookInfo" type="mebook.model.BookInfo">
 		<id property="id" column="id" />
 		<result property="title" column="title" />
 		<result property="publisher" column="publisher" />
@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			author,
 			publisher,
 			description,
-			image_path,
+			image_url,
 			location,
 			isbn,
 			created_date,
@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{author},
 			#{publisher},
 			#{description},
-			#{imagePath},
+			#{imageUrl},
 			#{location},
 			#{isbn},
 			CURRENT_TIMESTAMP,
@@ -67,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			author=#{author},
 			publisher=#{publisher},
 			description=#{description},
-			image_path=#{imagePath},
+			image_url=#{imageUrl},
 			location=#{location},
 			isbn=#{isbn},
 			modified_date=CURRENT_TIMESTAMP

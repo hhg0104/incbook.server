@@ -1,0 +1,15 @@
+CREATE SCHEMA `mebook` DEFAULT CHARACTER SET utf8;
+
+CREATE TABLE `book_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) NOT NULL,
+  `author` varchar(45) DEFAULT NULL,
+  `publisher` varchar(45) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `image_url` varchar(45) DEFAULT NULL,
+  `location` varchar(10) DEFAULT NULL,
+  `isbn` varchar(45) DEFAULT NULL,
+  `created_date` datetime NOT NULL,
+  `modified_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

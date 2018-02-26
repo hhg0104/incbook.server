@@ -9,7 +9,7 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
-	<context:component-scan base-package="incbook.controller" />
+	<context:component-scan base-package="mebook.controller" />
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />

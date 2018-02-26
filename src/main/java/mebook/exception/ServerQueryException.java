@@ -1,4 +1,4 @@
-package incbook.exception;
+package mebook.exception;
 
 public class ServerQueryException extends Exception {
 

@@ -10,7 +10,7 @@
 
 	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
 		<property name="driver" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/incbook" />
+		<property name="url" value="jdbc:mysql://localhost:3306/mebook" />
 		<property name="username" value="bookmaster" />
 		<property name="password" value="hhg102030" />
 	</bean>
@@ -30,7 +30,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
-	<bean id="formalworksBookDAO" class="incbook.model.BookDAO">
+	<bean id="formalworksBookDAO" class="mebook.model.BookDAO">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 </beans>

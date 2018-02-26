@@ -1,4 +1,4 @@
-package incbook.model;
+package mebook.model;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mysql.jdbc.util.ServerController;
 
-import incbook.exception.ServerQueryException;
+import mebook.exception.ServerQueryException;
 
 @Repository
 @Component
@@ -31,9 +31,9 @@ public class BookDAO {
 	}
 
 	/**
-	 * DBì—ì„œ ì±… ì •ë³´ ëª©ë¡ì„ ì „ë¶€ ê°€ì ¸ì˜¨ë‹¤.
+	 * DB?—?„œ ì±? ? •ë³? ëª©ë¡?„ ? „ë¶? ê°?? ¸?˜¨?‹¤.
 	 * 
-	 * @return ì±… ì •ë³´ ëª©ë¡
+	 * @return ì±? ? •ë³? ëª©ë¡
 	 */
 	public List<Map<String, String>> getBookList() {
 
@@ -41,10 +41,10 @@ public class BookDAO {
 	}
 
 	/**
-	 * DBì—ì„œ íŠ¹ì • ì±…ì„ ì œê±°í•œë‹¤.
+	 * DB?—?„œ ?Š¹? • ì±…ì„ ? œê±°í•œ?‹¤.
 	 * 
 	 * @param id
-	 *            ì±… ID
+	 *            ì±? ID
 	 * @return ê²°ê³¼ Int
 	 */
 	public int deleteBook(int id) {
@@ -53,18 +53,18 @@ public class BookDAO {
 	}
 
 	/**
-	 * DBì— ì±…ì„ ë“±ë¡í•œë‹¤.
+	 * DB?— ì±…ì„ ?“±ë¡í•œ?‹¤.
 	 * 
 	 * @param bookInfo
-	 *            ë“±ë¡ ì •ë³´
+	 *            ?“±ë¡? ? •ë³?
 	 * @return ê²°ê³¼ Int
 	 * @throws ServerQueryException
-	 *             ì„œë²„ ì¿¼ë¦¬ ê´€ë ¨ ì˜ˆì™¸ì‚¬í•­
+	 *             ?„œë²? ì¿¼ë¦¬ ê´?? ¨ ?˜ˆ?™¸?‚¬?•­
 	 */
 	public int insertBook(BookInfo bookInfo) throws ServerQueryException {
 
 		if (bookInfo == null || bookInfo.getTitle() == null) {
-			String errMsg = "ì±… ë“±ë¡ì— í•„ìš”í•œ í•„ìˆ˜ ì •ë³´ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."; //$NON-NLS-1$
+			String errMsg = "ì±? ?“±ë¡ì— ?•„?š”?•œ ?•„?ˆ˜ ? •ë³´ê? ?…? ¥?˜ì§? ?•Š?•˜?Šµ?‹ˆ?‹¤."; //$NON-NLS-1$
 			LOGGER.error(errMsg);
 			throw new ServerQueryException(errMsg, HttpServletResponse.SC_BAD_REQUEST);
 		}
@@ -75,18 +75,18 @@ public class BookDAO {
 	}
 
 	/**
-	 * ì±… ì •ë³´ë¥¼ ìˆ˜ì •í•œë‹¤.
+	 * ì±? ? •ë³´ë?? ?ˆ˜? •?•œ?‹¤.
 	 * 
 	 * @param bookInfo
-	 *            ìˆ˜ì • ì •ë³´
+	 *            ?ˆ˜? • ? •ë³?
 	 * @return ê²°ê³¼ Int
 	 * @throws ServerQueryException
-	 *             ì„œë²„ ì¿¼ë¦¬ ê´€ë ¨ ì˜ˆì™¸ì‚¬í•­
+	 *             ?„œë²? ì¿¼ë¦¬ ê´?? ¨ ?˜ˆ?™¸?‚¬?•­
 	 */
 	public int updateBook(BookInfo bookInfo) throws ServerQueryException {
 
 		if (bookInfo == null || bookInfo.getTitle() == null) {
-			String errMsg = "ì±… ë“±ë¡ì— í•„ìš”í•œ í•„ìˆ˜ ì •ë³´ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."; //$NON-NLS-1$
+			String errMsg = "ì±? ?“±ë¡ì— ?•„?š”?•œ ?•„?ˆ˜ ? •ë³´ê? ?…? ¥?˜ì§? ?•Š?•˜?Šµ?‹ˆ?‹¤."; //$NON-NLS-1$
 			LOGGER.error(errMsg);
 			throw new ServerQueryException(errMsg, HttpServletResponse.SC_BAD_REQUEST);
 		}
